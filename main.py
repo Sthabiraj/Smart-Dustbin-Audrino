@@ -19,7 +19,7 @@ while True:
     sensor_data = data  # Replace this with your data processing logic
 
     # Create a JSON payload with the data you want to send to Google Chat
-    payload = {"text": f"Sensor data: {sensor_data}"}
+    payload = {"text": f"{sensor_data}"}
 
     # Send the data to Google Chat via HTTP POST request
     response = requests.post(webhook_url, json=payload)
