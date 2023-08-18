@@ -8,12 +8,11 @@ int echoPin2 = 5;
 
 // For Servo
 #include <Servo.h>
-
 Servo myServo;
 int servoPosition = 9;
 
-// Flag to track if the message has been printed
-bool messagePrinted = false;
+// Flag if the dustbin is full
+bool isDustbinFull = false;
 
 void setup()
 {
@@ -51,6 +50,7 @@ void loop()
   if (distance1 <= 30)
   {
     myServo.write(120);
+    delay(2000);
   }
   else
   {
@@ -66,19 +66,18 @@ void loop()
 
   // Calculate distance2
   float time2 = pulseIn(echoPin2, HIGH);
-  float distance2 = 3;
+  float distance2 = (0.0343 * time2) / 2;
 
-  // Check if dustbin is full and print message if not printed before
-  if (distance2 <= 3 && !messagePrinted)
+  // Check if dustbin is full and flag isDustbin to true
+  if (distance2 <= 5 && !isDustbinFull)
   {
     Serial.println("Your dustbin is full! Please empty it.");
-    messagePrinted = true; // Set the flag to indicate the message has been printed
+    isDustbinFull = true;
   }
 
-  // Reset messagePrinted flag if dustbin is no longer full
-  if (distance2 > 3)
+  // Flag isDustbinFull to false if the dustbin is not full
+  if (distance2 > 5)
   {
-    Serial.println("Your dustbin is not full.");
-    messagePrinted = false; // Reset the message printed flag
+    isDustbinFull = false;
   }
 }
