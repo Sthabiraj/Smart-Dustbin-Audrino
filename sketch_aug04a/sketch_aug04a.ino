@@ -14,6 +14,9 @@ int servoPosition = 9;
 // Flag if the dustbin is full
 bool isDustbinFull = false;
 
+// Flag if the lid is open
+bool lidOpen = false;
+
 void setup()
 {
   // For Distance Sensor
@@ -58,11 +61,18 @@ void loop()
   }
 
   // For inside sensor
-  digitalWrite(trigPin2, LOW);
-  delay(2);
-  digitalWrite(trigPin2, HIGH);
-  delay(10);
-  digitalWrite(trigPin2, LOW);
+  if (lidOpen)
+  {
+    digitalWrite(trigPin2, LOW);
+    delay(2);
+    digitalWrite(trigPin2, HIGH);
+    delay(10);
+    digitalWrite(trigPin2, LOW);
+  }
+  else
+  {
+    digitalWrite(trigPin2, LOW);
+  }
 
   // Calculate distance2
   float time2 = pulseIn(echoPin2, HIGH);
