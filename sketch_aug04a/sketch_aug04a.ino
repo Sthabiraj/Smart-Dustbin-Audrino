@@ -52,8 +52,9 @@ void loop()
   // Open the dustbin lid if person is near
   if (distance1 <= 30)
   {
-    myServo.write(120);
-    delay(2000);
+    myServo.write(90);
+    delay(3000);
+    myServo.write(0);
   }
   else
   {
