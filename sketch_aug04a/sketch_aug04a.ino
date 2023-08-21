@@ -50,11 +50,10 @@ void loop()
   float distance1 = (0.0343 * time1) / 2;
 
   // Open the dustbin lid if person is near
-  if (distance1 <= 30)
+  if (distance1 <= 40)
   {
     myServo.write(90);
     delay(3000);
-    myServo.write(0);
   }
   else
   {
