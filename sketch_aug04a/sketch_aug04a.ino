@@ -17,6 +17,9 @@ bool isDustbinFull = false;
 // Flag if the lid is open
 bool lidOpen = false;
 
+// Location name
+char locationName[100] = "Herald College Kathmandu";
+
 void setup()
 {
   // For Distance Sensor
@@ -52,7 +55,7 @@ void loop()
   // Open the dustbin lid if person is near
   if (distance1 <= 40)
   {
-    myServo.write(90);
+    myServo.write(120);
     delay(3000);
   }
   else
@@ -81,7 +84,9 @@ void loop()
   // Check if dustbin is full and flag isDustbin to true
   if (distance2 <= 5 && !isDustbinFull)
   {
-    Serial.println("Your dustbin is full! Please empty it.");
+    Serial.print("Your dustbin at ");
+    Serial.print(locationName);
+    Serial.println(" is full! Please empty it.");
     isDustbinFull = true;
   }
 
