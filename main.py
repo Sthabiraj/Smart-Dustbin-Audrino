@@ -1,3 +1,7 @@
+# Student name: Biraj Shrestha
+# Project title: Smart Dustbin
+# Date: August 25, 2023
+
 import serial
 import requests
 
